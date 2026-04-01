@@ -1,68 +1,68 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Review</title>
+    <title>Epic Review Loading</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
             text-align: center;
-            padding-top: 100px;
-            background-color: #ffffff;
+            padding-top: 120px;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
             margin: 0;
-            transition: all 0.8s ease;
             overflow: hidden;
             height: 100vh;
+            transition: all 0.8s ease;
         }
-        
+
         #content {
             transition: all 0.8s ease;
         }
-        
+
         h1 {
-            color: #333;
-            font-size: 24px;
-            margin-bottom: 30px;
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 25px;
         }
-        
+
         .loader {
             width: 80px;
             height: 80px;
-            margin: 0 auto;
-            border: 8px solid #f3f3f3;
+            margin: 0 auto 15px;
+            border: 8px solid #e0e0e0;
             border-top: 8px solid #3498db;
             border-radius: 50%;
-            animation: spin 1.5s linear infinite;
+            animation: spin 1.2s linear infinite;
         }
-        
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        
+
         .hidden {
             opacity: 0;
             transform: translateY(-50px);
             height: 0;
             overflow: hidden;
         }
-        
+
         #prank {
             display: none;
-            font-size: 36px;
+            font-size: 40px;
             font-weight: bold;
-            color: #ff5722;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            color: #e67e22;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
             animation: bounce 0.5s infinite alternate;
-            margin-top: 50px;
+            margin-top: 40px;
         }
-        
+
         @keyframes bounce {
             from { transform: translateY(0); }
-            to { transform: translateY(-20px); }
+            to { transform: translateY(-25px); }
         }
-        
+
         .confetti {
             position: absolute;
             width: 10px;
@@ -70,54 +70,57 @@
             background-color: #f00;
             opacity: 0;
         }
+
+        p {
+            color: #555;
+            font-size: 16px;
+            margin-top: 15px;
+        }
     </style>
 </head>
 <body>
     <div id="content">
-        <h1>Review is loading...</h1>
+        <h1>Your Review is Loading...</h1>
         <div class="loader"></div>
-        <p>Please wait...</p>
+        <p>Hang tight! Good things take a moment...</p>
     </div>
-    <div id="prank">С первым апреля! 🎉</div>
+
+    <div id="prank">April Fools! 🎉</div>
 
     <script>
-        setTimeout(function() {
+        setTimeout(() => {
             document.getElementById("content").classList.add("hidden");
-            document.getElementById("prank").style.display = "block";
+            const prank = document.getElementById("prank");
+            prank.style.display = "block";
             
-            for (let i = 0; i < 100; i++) {
-                createConfetti();
-            }
+            // Create confetti
+            for (let i = 0; i < 120; i++) createConfetti();
         }, 3000);
-        
+
         function createConfetti() {
             const confetti = document.createElement('div');
             confetti.classList.add('confetti');
-            
-            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
-            const randomColor = colors[Math.floor(Math.random() * colors.length)];
-            
-            confetti.style.backgroundColor = randomColor;
+
+            const colors = ['#e74c3c', '#2ecc71', '#3498db', '#f1c40f', '#9b59b6', '#1abc9c'];
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
             confetti.style.left = Math.random() * 100 + 'vw';
             confetti.style.top = -10 + 'px';
             confetti.style.opacity = 1;
             confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
             confetti.style.width = Math.random() * 10 + 5 + 'px';
             confetti.style.height = Math.random() * 10 + 5 + 'px';
-            
+
             document.body.appendChild(confetti);
-            
-            const animationDuration = Math.random() * 3 + 2;
-            confetti.style.transition = `top ${animationDuration}s linear, transform ${animationDuration}s ease-out`;
-            
+
+            const duration = Math.random() * 3 + 2;
+            confetti.style.transition = `top ${duration}s linear, transform ${duration}s ease-out`;
+
             setTimeout(() => {
                 confetti.style.top = '100vh';
                 confetti.style.transform = `rotate(${Math.random() * 360}deg) translateX(${Math.random() * 100 - 50}px)`;
             }, 10);
-            
-            setTimeout(() => {
-                confetti.remove();
-            }, animationDuration * 1000 + 1000);
+
+            setTimeout(() => confetti.remove(), duration * 1000 + 1000);
         }
     </script>
 </body>
